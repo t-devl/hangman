@@ -16,20 +16,12 @@ const Letter = styled.div`
   text-align: center;
 `;
 
-export default function Word() {
+export default function Word({ currentResult }) {
   return (
     <StyledWord>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
-      <Letter></Letter>
+      {currentResult.map((letter, index) => (
+        <Letter key={index}>{letter}</Letter>
+      ))}
     </StyledWord>
   );
 }

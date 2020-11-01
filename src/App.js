@@ -29,20 +29,24 @@ function App() {
   ]);
 
   const [chosenWord, setChosenWord] = useState("TEST");
+  const [currentResult, setCurrentResult] = useState(["", "", "", ""]);
 
   const checkIfKeyMatches = (key) => {
+    let correctlyGuessedLetters = [...currentResult];
     for (let i = 0; i < chosenWord.length; i++) {
       if (key === chosenWord[i]) {
-        console.log("match");
+        correctlyGuessedLetters[i] = key;
+        console.log("yes");
       }
     }
+    setCurrentResult(correctlyGuessedLetters);
   };
 
   return (
     <div className="App">
       <Title>Hangman</Title>
       <Drawing></Drawing>
-      <Word></Word>
+      <Word currentResult={currentResult}></Word>
       <Keyboard checkIfKeyMatches={checkIfKeyMatches}></Keyboard>
       <GuessWord></GuessWord>
     </div>
