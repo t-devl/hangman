@@ -2,6 +2,7 @@ import "./App.css";
 import styled from "styled-components";
 import Drawing from "./components/Drawing";
 import Word from "./components/Word";
+import Keyboard from "./components/Keyboard";
 
 const Title = styled.h1`
   margin: 1rem 0;
@@ -16,6 +17,7 @@ function App() {
       <Title>Hangman</Title>
       <Drawing></Drawing>
       <Word></Word>
+      <Keyboard></Keyboard>
     </div>
   );
 }
