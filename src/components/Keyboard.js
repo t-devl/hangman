@@ -38,30 +38,40 @@ const Key = styled.div`
   background-color: #e4e4e4;
   font-size: 0.8rem;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 
   @media (min-width: 500px) {
     margin: 5px;
   }
 `;
 
-export default function Keyboard() {
+export default function Keyboard({ checkIfKeyMatches }) {
+  const handleClick = (key) => {
+    checkIfKeyMatches(key);
+  };
   return (
     <StyledKeyboard>
       <KeyboardRow>
         {firstRowKeys.map((key) => (
-          <Key key={key}>{key}</Key>
+          <Key key={key} onClick={() => handleClick(key)}>
+            {key}
+          </Key>
         ))}
       </KeyboardRow>
 
       <KeyboardRow>
         {secondRowKeys.map((key) => (
-          <Key key={key}>{key}</Key>
+          <Key key={key} onClick={() => handleClick(key)}>
+            {key}
+          </Key>
         ))}
       </KeyboardRow>
 
       <KeyboardRow>
         {thirdRowKeys.map((key) => (
-          <Key key={key}>{key}</Key>
+          <Key key={key} onClick={() => handleClick(key)}>
+            {key}
+          </Key>
         ))}
       </KeyboardRow>
     </StyledKeyboard>
