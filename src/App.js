@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Drawing from "./components/Drawing";
 import Word from "./components/Word";
 import Keyboard from "./components/Keyboard";
+import GuessWord from "./components/GuessWord";
 
 const Title = styled.h1`
   margin: 1rem 0;
@@ -18,6 +19,7 @@ function App() {
       <Drawing></Drawing>
       <Word></Word>
       <Keyboard></Keyboard>
+      <GuessWord></GuessWord>
     </div>
   );
 }
