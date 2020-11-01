@@ -6,6 +6,11 @@
   margin: 0;
 }
 
+input,
+button {
+  font-family: "Roboto", sans-serif;
+}
+
 .App {
   display: flex;
   flex-direction: column;
