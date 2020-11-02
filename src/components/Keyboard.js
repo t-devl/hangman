@@ -24,6 +24,7 @@ const KeyboardRow = styled.div`
 `;
 
 const Key = styled.button`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,20 +42,34 @@ const Key = styled.button`
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
+  &[disabled] {
+    background-color: #f2f2f2;
+  }
+
+  &[disabled]::after {
+    content: "";
+    position: absolute;
+    width: 90%;
+    height: 1px;
+    background-color: black;
+    transform: rotate(-45deg);
+  }
+
   @media (min-width: 500px) {
     margin: 5px;
   }
 `;
 
 export default function Keyboard({ checkIfKeyMatches }) {
-  const handleClick = (key) => {
+  const handleClick = (e, key) => {
     checkIfKeyMatches(key);
+    e.target.setAttribute("disabled", true);
   };
   return (
     <StyledKeyboard>
       <KeyboardRow>
         {firstRowKeys.map((key) => (
-          <Key key={key} onClick={() => handleClick(key)}>
+          <Key key={key} onClick={(e) => handleClick(e, key)}>
             {key}
           </Key>
         ))}
@@ -62,7 +77,7 @@ export default function Keyboard({ checkIfKeyMatches }) {
 
       <KeyboardRow>
         {secondRowKeys.map((key) => (
-          <Key key={key} onClick={() => handleClick(key)}>
+          <Key key={key} onClick={(e) => handleClick(e, key)}>
             {key}
           </Key>
         ))}
@@ -70,7 +85,7 @@ export default function Keyboard({ checkIfKeyMatches }) {
 
       <KeyboardRow>
         {thirdRowKeys.map((key) => (
-          <Key key={key} onClick={() => handleClick(key)}>
+          <Key key={key} onClick={(e) => handleClick(e, key)}>
             {key}
           </Key>
         ))}
