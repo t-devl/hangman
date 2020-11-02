@@ -14,16 +14,16 @@ const StyledKeyboard = styled.div`
 
 const KeyboardRow = styled.div`
   display: flex;
-  &:first-of-type div {
+  &:first-of-type button {
     margin-top: 0;
   }
 
-  &:last-of-type div {
+  &:last-of-type button {
     margin-bottom: 0;
   }
 `;
 
-const Key = styled.div`
+const Key = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +34,7 @@ const Key = styled.div`
   max-width: 30px;
   max-height: 30px;
   margin: 1vw;
+  border: none;
   border-radius: 3px;
   background-color: #e4e4e4;
   font-size: 0.8rem;
