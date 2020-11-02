@@ -14,6 +14,7 @@ const Base = styled.div`
   width: 55%;
   height: 4px;
   background-color: black;
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const Stand = styled.div`
@@ -22,6 +23,7 @@ const Stand = styled.div`
   height: 100%;
   left: calc(27.5% - 2px);
   background-color: black;
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const AcrossBeam = styled.div`
@@ -33,6 +35,7 @@ const AcrossBeam = styled.div`
   background-color: black;
   transform-origin: bottom;
   transform: rotate(-45deg);
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const TopBar = styled.div`
@@ -42,6 +45,7 @@ const TopBar = styled.div`
   height: 4px;
   width: 50%;
   background-color: black;
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const Noose = styled.div`
@@ -51,6 +55,7 @@ const Noose = styled.div`
   width: 4px;
   height: 20%;
   background-color: black;
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const Head = styled.div`
@@ -60,6 +65,7 @@ const Head = styled.div`
   width: 33px;
   height: 33px;
   border-radius: 50%;
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 
   &::after {
     position: absolute;
@@ -78,6 +84,7 @@ const Body = styled.div`
   width: 4px;
   height: 25%;
   background-color: black;
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const LeftArm = styled.div`
@@ -89,6 +96,7 @@ const LeftArm = styled.div`
   background-color: black;
   transform-origin: bottom;
   transform: rotate(-50deg);
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const RightArm = styled.div`
@@ -100,6 +108,7 @@ const RightArm = styled.div`
   background-color: black;
   transform-origin: bottom;
   transform: rotate(50deg);
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const LeftLeg = styled.div`
@@ -111,6 +120,7 @@ const LeftLeg = styled.div`
   background-color: black;
   transform-origin: top;
   transform: rotate(40deg);
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
 const RightLeg = styled.div`
@@ -122,22 +132,23 @@ const RightLeg = styled.div`
   background-color: black;
   transform-origin: top;
   transform: rotate(-40deg);
+  visibility: ${(props) => (props.visible ? "visible" : "hidden")};
 `;
 
-export default function Drawing() {
+export default function Drawing({ livesLeft }) {
   return (
     <StyledDrawing>
-      <Base></Base>
-      <Stand></Stand>
-      <TopBar></TopBar>
-      <AcrossBeam></AcrossBeam>
-      <Noose></Noose>
-      <Head></Head>
-      <Body></Body>
-      <LeftArm></LeftArm>
-      <RightArm></RightArm>
-      <LeftLeg></LeftLeg>
-      <RightLeg></RightLeg>
+      <Base visible={livesLeft < 11}></Base>
+      <Stand visible={livesLeft < 10}></Stand>
+      <TopBar visible={livesLeft < 9}></TopBar>
+      <AcrossBeam visible={livesLeft < 8}></AcrossBeam>
+      <Noose visible={livesLeft < 7}></Noose>
+      <Head visible={livesLeft < 6}></Head>
+      <Body visible={livesLeft < 5}></Body>
+      <LeftArm visible={livesLeft < 4}></LeftArm>
+      <RightArm visible={livesLeft < 3}></RightArm>
+      <LeftLeg visible={livesLeft < 2}></LeftLeg>
+      <RightLeg visible={livesLeft < 1}></RightLeg>
     </StyledDrawing>
   );
 }

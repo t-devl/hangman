@@ -61,7 +61,7 @@ function App() {
   return (
     <div className="App">
       <Title>Hangman</Title>
-      <Drawing></Drawing>
+      <Drawing livesLeft={livesLeft}></Drawing>
       <Word currentResult={currentResult}></Word>
       <Keyboard checkIfKeyMatches={checkIfKeyMatches}></Keyboard>
       <GuessWord checkGuess={checkGuess}></GuessWord>
