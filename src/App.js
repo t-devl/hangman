@@ -42,13 +42,21 @@ function App() {
     setCurrentResult(correctlyGuessedLetters);
   };
 
+  const checkGuess = (guess) => {
+    if (guess === chosenWord) {
+      console.log("correct");
+    } else {
+      console.log("incorrect");
+    }
+  };
+
   return (
     <div className="App">
       <Title>Hangman</Title>
       <Drawing></Drawing>
       <Word currentResult={currentResult}></Word>
       <Keyboard checkIfKeyMatches={checkIfKeyMatches}></Keyboard>
-      <GuessWord></GuessWord>
+      <GuessWord checkGuess={checkGuess}></GuessWord>
     </div>
   );
 }

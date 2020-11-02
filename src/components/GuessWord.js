@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledGuessWord = styled.form`
@@ -23,10 +23,22 @@ const SubmitButton = styled.button`
   text-transform: uppercase;
 `;
 
-export default function GuessWord() {
+export default function GuessWord({ checkGuess }) {
+  const [guess, setGuess] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    checkGuess(guess.toUpperCase());
+    setGuess("");
+  };
+
   return (
-    <StyledGuessWord>
-      <GuessInput placeholder="Have a guess..."></GuessInput>
+    <StyledGuessWord onSubmit={handleSubmit}>
+      <GuessInput
+        placeholder="Have a guess..."
+        value={guess}
+        onChange={(e) => setGuess(e.target.value)}
+      ></GuessInput>
       <SubmitButton>Submit</SubmitButton>
     </StyledGuessWord>
   );
