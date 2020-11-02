@@ -30,23 +30,31 @@ function App() {
 
   const [chosenWord, setChosenWord] = useState("TEST");
   const [currentResult, setCurrentResult] = useState(["", "", "", ""]);
+  const [livesLeft, setLivesLeft] = useState(11);
 
   const checkIfKeyMatches = (key) => {
+    let matchesFound = 0;
     let correctlyGuessedLetters = [...currentResult];
+
     for (let i = 0; i < chosenWord.length; i++) {
       if (key === chosenWord[i]) {
         correctlyGuessedLetters[i] = key;
-        console.log("yes");
+        matchesFound++;
       }
     }
-    setCurrentResult(correctlyGuessedLetters);
+
+    if (matchesFound > 0) {
+      setCurrentResult(correctlyGuessedLetters);
+    } else {
+      setLivesLeft(livesLeft - 1);
+    }
   };
 
   const checkGuess = (guess) => {
     if (guess === chosenWord) {
       console.log("correct");
     } else {
-      console.log("incorrect");
+      setLivesLeft(livesLeft - 1);
     }
   };
 
