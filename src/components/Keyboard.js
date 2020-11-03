@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Key from "./Key";
 
 const firstRowKeys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
 const secondRowKeys = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
@@ -23,53 +24,17 @@ const KeyboardRow = styled.div`
   }
 `;
 
-const Key = styled.button`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 25px;
-  min-height: 25px;
-  width: 7vw;
-  height: 7vw;
-  max-width: 30px;
-  max-height: 30px;
-  margin: 1vw;
-  border: none;
-  border-radius: 3px;
-  background-color: #e4e4e4;
-  font-size: 0.8rem;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-
-  &[disabled] {
-    background-color: #f2f2f2;
-  }
-
-  &[disabled]::after {
-    content: "";
-    position: absolute;
-    width: 90%;
-    height: 1px;
-    background-color: black;
-    transform: rotate(-45deg);
-  }
-
-  @media (min-width: 500px) {
-    margin: 5px;
-  }
-`;
-
-export default function Keyboard({ checkIfKeyMatches }) {
-  const handleClick = (e, key) => {
-    checkIfKeyMatches(key);
-    e.target.setAttribute("disabled", true);
-  };
+export default function Keyboard({ checkIfKeyMatches, isGameOver }) {
   return (
     <StyledKeyboard>
       <KeyboardRow>
         {firstRowKeys.map((key) => (
-          <Key key={key} onClick={(e) => handleClick(e, key)}>
+          <Key
+            isGameOver={isGameOver}
+            checkIfKeyMatches={checkIfKeyMatches}
+            key={key}
+            value={key}
+          >
             {key}
           </Key>
         ))}
@@ -77,17 +42,23 @@ export default function Keyboard({ checkIfKeyMatches }) {
 
       <KeyboardRow>
         {secondRowKeys.map((key) => (
-          <Key key={key} onClick={(e) => handleClick(e, key)}>
-            {key}
-          </Key>
+          <Key
+            isGameOver={isGameOver}
+            checkIfKeyMatches={checkIfKeyMatches}
+            key={key}
+            value={key}
+          ></Key>
         ))}
       </KeyboardRow>
 
       <KeyboardRow>
         {thirdRowKeys.map((key) => (
-          <Key key={key} onClick={(e) => handleClick(e, key)}>
-            {key}
-          </Key>
+          <Key
+            isGameOver={isGameOver}
+            checkIfKeyMatches={checkIfKeyMatches}
+            key={key}
+            value={key}
+          ></Key>
         ))}
       </KeyboardRow>
     </StyledKeyboard>
