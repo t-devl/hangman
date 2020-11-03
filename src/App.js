@@ -4,7 +4,8 @@ import Drawing from "./components/Drawing";
 import Word from "./components/Word";
 import Keyboard from "./components/Keyboard";
 import GuessWord from "./components/GuessWord";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import GameOver from "./components/GameOver";
 
 const Title = styled.h1`
   margin: 1rem 0;
@@ -31,6 +32,7 @@ function App() {
   const [chosenWord, setChosenWord] = useState("TEST");
   const [currentResult, setCurrentResult] = useState(["", "", "", ""]);
   const [livesLeft, setLivesLeft] = useState(11);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const checkIfKeyMatches = (key) => {
     let matchesFound = 0;
@@ -58,6 +60,12 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (livesLeft === 0) {
+      setIsGameOver(true);
+    }
+  }, [livesLeft]);
+
   return (
     <div className="App">
       <Title>Hangman</Title>
@@ -65,6 +73,7 @@ function App() {
       <Word currentResult={currentResult}></Word>
       <Keyboard checkIfKeyMatches={checkIfKeyMatches}></Keyboard>
       <GuessWord checkGuess={checkGuess}></GuessWord>
+      {isGameOver ? <GameOver></GameOver> : ""}
     </div>
   );
 }
