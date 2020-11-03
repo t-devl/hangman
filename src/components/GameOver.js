@@ -26,11 +26,11 @@ const PlayAgainButton = styled.button`
   text-transform: uppercase;
 `;
 
-export default function GameOver() {
+export default function GameOver({ startNewGame }) {
   return (
     <StyledGameOver>
       <Message>Game Over!</Message>
-      <PlayAgainButton>Play Again</PlayAgainButton>
+      <PlayAgainButton onClick={startNewGame}>Play Again</PlayAgainButton>
     </StyledGameOver>
   );
 }

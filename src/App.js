@@ -34,6 +34,12 @@ function App() {
   const [livesLeft, setLivesLeft] = useState(11);
   const [isGameOver, setIsGameOver] = useState(false);
 
+  const startNewGame = () => {
+    setCurrentResult(["", "", "", ""]);
+    setLivesLeft(11);
+    setIsGameOver(false);
+  };
+
   const checkIfKeyMatches = (key) => {
     let matchesFound = 0;
     let correctlyGuessedLetters = [...currentResult];
@@ -71,9 +77,12 @@ function App() {
       <Title>Hangman</Title>
       <Drawing livesLeft={livesLeft}></Drawing>
       <Word currentResult={currentResult}></Word>
-      <Keyboard checkIfKeyMatches={checkIfKeyMatches}></Keyboard>
+      <Keyboard
+        checkIfKeyMatches={checkIfKeyMatches}
+        isGameOver={isGameOver}
+      ></Keyboard>
       <GuessWord checkGuess={checkGuess}></GuessWord>
-      {isGameOver ? <GameOver></GameOver> : ""}
+      {isGameOver ? <GameOver startNewGame={startNewGame}></GameOver> : ""}
     </div>
   );
 }
