@@ -14,6 +14,7 @@ const StyledGameOver = styled.div`
 
 const Message = styled.h1`
   margin-bottom: 0.5rem;
+  color: ${(props) => (props.gameOutcome === "win" ? "#3dc229" : "#fa2720")};
   font-size: 3rem;
   text-transform: uppercase;
 `;
@@ -26,10 +27,14 @@ const PlayAgainButton = styled.button`
   text-transform: uppercase;
 `;
 
-export default function GameOver({ startNewGame }) {
+export default function GameOver({
+  startNewGame,
+  gameOverMessage,
+  gameOutcome,
+}) {
   return (
     <StyledGameOver>
-      <Message>Game Over!</Message>
+      <Message gameOutcome={gameOutcome}>{gameOverMessage}</Message>
       <PlayAgainButton onClick={startNewGame}>Play Again</PlayAgainButton>
     </StyledGameOver>
   );

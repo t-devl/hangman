@@ -33,6 +33,8 @@ function App() {
   const [currentResult, setCurrentResult] = useState(["", "", "", ""]);
   const [livesLeft, setLivesLeft] = useState(11);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [gameOutcome, setGameOutcome] = useState("");
+  const [gameOverMessage, setGameOverMessage] = useState("");
 
   const startNewGame = () => {
     setCurrentResult(["", "", "", ""]);
@@ -58,9 +60,14 @@ function App() {
     }
   };
 
+  const gameOver = (result) => {
+    setIsGameOver(true);
+    setGameOutcome(result);
+  };
+
   const checkGuess = (guess) => {
     if (guess === chosenWord) {
-      console.log("correct");
+      gameOver("win");
     } else {
       setLivesLeft(livesLeft - 1);
     }
@@ -68,9 +75,23 @@ function App() {
 
   useEffect(() => {
     if (livesLeft === 0) {
-      setIsGameOver(true);
+      gameOver("lose");
     }
   }, [livesLeft]);
+
+  useEffect(() => {
+    if (currentResult.join("") === chosenWord) {
+      gameOver("win");
+    }
+  }, [currentResult]);
+
+  useEffect(() => {
+    if (gameOutcome === "win") {
+      setGameOverMessage("You Win!");
+    } else {
+      setGameOverMessage("You Lose!");
+    }
+  }, [gameOutcome]);
 
   return (
     <div className="App">
@@ -82,7 +103,15 @@ function App() {
         isGameOver={isGameOver}
       ></Keyboard>
       <GuessWord checkGuess={checkGuess}></GuessWord>
-      {isGameOver ? <GameOver startNewGame={startNewGame}></GameOver> : ""}
+      {isGameOver ? (
+        <GameOver
+          startNewGame={startNewGame}
+          gameOutcome={gameOutcome}
+          gameOverMessage={gameOverMessage}
+        ></GameOver>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
