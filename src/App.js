@@ -15,7 +15,10 @@ const Title = styled.h1`
 `;
 
 function App() {
-  const [randomWords, setRandomWords] = useState([
+  let indexOfChosenWord;
+  let correctlyGuessedLetters;
+
+  let randomWords = [
     "population",
     "jazz",
     "weather",
@@ -27,25 +30,33 @@ function App() {
     "restaurant",
     "reunion",
     "secret",
-  ]);
-
+  ];
   const [chosenWord, setChosenWord] = useState("TEST");
-  const [currentResult, setCurrentResult] = useState(["", "", "", ""]);
+  const [currentResult, setCurrentResult] = useState([]);
   const [livesLeft, setLivesLeft] = useState(11);
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameOutcome, setGameOutcome] = useState("");
   const [gameOverMessage, setGameOverMessage] = useState("");
 
   const startNewGame = () => {
-    setCurrentResult(["", "", "", ""]);
+    indexOfChosenWord = Math.floor(Math.random() * randomWords.length);
+    setChosenWord(randomWords[indexOfChosenWord].toUpperCase());
     setLivesLeft(11);
     setIsGameOver(false);
   };
 
+  useEffect(() => {
+    correctlyGuessedLetters = [];
+    for (let i = 0; i < chosenWord.length; i++) {
+      correctlyGuessedLetters.push("");
+    }
+    setCurrentResult(correctlyGuessedLetters);
+    randomWords.splice(indexOfChosenWord);
+  }, [chosenWord]);
+
   const checkIfKeyMatches = (key) => {
     let matchesFound = 0;
-    let correctlyGuessedLetters = [...currentResult];
-
+    correctlyGuessedLetters = [...currentResult];
     for (let i = 0; i < chosenWord.length; i++) {
       if (key === chosenWord[i]) {
         correctlyGuessedLetters[i] = key;
