@@ -32,6 +32,7 @@ function App() {
     "reunion",
     "secret",
   ];
+  const [isWelcomeScreenVisible, setIsWelcomeScreenVisible] = useState(true);
   const [chosenWord, setChosenWord] = useState("TEST");
   const [currentResult, setCurrentResult] = useState([]);
   const [livesLeft, setLivesLeft] = useState(11);
@@ -107,7 +108,14 @@ function App() {
 
   return (
     <div className="App">
-      <Welcome></Welcome>
+      {isWelcomeScreenVisible ? (
+        <Welcome
+          startNewGame={startNewGame}
+          setIsWelcomeScreenVisible={setIsWelcomeScreenVisible}
+        ></Welcome>
+      ) : (
+        ""
+      )}
       <Title>Hangman</Title>
       <Drawing livesLeft={livesLeft}></Drawing>
       <Word currentResult={currentResult}></Word>

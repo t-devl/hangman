@@ -30,11 +30,16 @@ const PlayButton = styled.button`
   text-transform: uppercase;
 `;
 
-export default function Welcome() {
+export default function Welcome({ startNewGame, setIsWelcomeScreenVisible }) {
+  const handleClick = () => {
+    setIsWelcomeScreenVisible(false);
+    startNewGame();
+  };
+
   return (
     <StyledWelcome>
       <Title>Welcome to Hangman</Title>
-      <PlayButton>Play</PlayButton>
+      <PlayButton onClick={handleClick}>Play</PlayButton>
     </StyledWelcome>
   );
 }
