@@ -6,6 +6,7 @@ import Keyboard from "./components/Keyboard";
 import GuessWord from "./components/GuessWord";
 import { useEffect, useState } from "react";
 import GameOver from "./components/GameOver";
+import Welcome from "./components/Welcome";
 
 const Title = styled.h1`
   margin: 1rem 0;
@@ -106,6 +107,7 @@ function App() {
 
   return (
     <div className="App">
+      <Welcome></Welcome>
       <Title>Hangman</Title>
       <Drawing livesLeft={livesLeft}></Drawing>
       <Word currentResult={currentResult}></Word>
