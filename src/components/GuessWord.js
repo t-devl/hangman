@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledGuessWord = styled.form`
+  position: relative;
   display: flex;
   margin: 1.5rem 0;
   border: 2px solid black;
@@ -23,13 +24,32 @@ const SubmitButton = styled.button`
   text-transform: uppercase;
 `;
 
+const ErrorMessage = styled.span`
+  position: absolute;
+  top: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: red;
+`;
+
 export default function GuessWord({ checkGuess }) {
   const [guess, setGuess] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const inputPattern = new RegExp("^[a-zA-Z]+$");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    checkGuess(guess.toUpperCase());
-    setGuess("");
+    if (isGuessValid()) {
+      checkGuess(guess.toUpperCase());
+      setGuess("");
+      setErrorMessage("");
+    } else {
+      setErrorMessage("Your guess must be made up of letters.");
+    }
+  };
+
+  const isGuessValid = () => {
+    return inputPattern.test(guess);
   };
 
   return (
@@ -40,6 +60,7 @@ export default function GuessWord({ checkGuess }) {
         onChange={(e) => setGuess(e.target.value)}
       ></GuessInput>
       <SubmitButton>Submit</SubmitButton>
+      {errorMessage !== "" ? <ErrorMessage>{errorMessage}</ErrorMessage> : ""}
     </StyledGuessWord>
   );
 }
