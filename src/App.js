@@ -123,7 +123,7 @@ function App() {
         checkIfKeyMatches={checkIfKeyMatches}
         isGameOver={isGameOver}
       ></Keyboard>
-      <GuessWord checkGuess={checkGuess}></GuessWord>
+      <GuessWord checkGuess={checkGuess} isGameOver={isGameOver}></GuessWord>
       {isGameOver ? (
         <GameOver
           startNewGame={startNewGame}

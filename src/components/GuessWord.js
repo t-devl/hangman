@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledGuessWord = styled.form`
@@ -32,7 +32,7 @@ const ErrorMessage = styled.span`
   color: red;
 `;
 
-export default function GuessWord({ checkGuess }) {
+export default function GuessWord({ checkGuess, isGameOver }) {
   const [guess, setGuess] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const inputPattern = new RegExp("^[a-zA-Z]+$");
@@ -51,6 +51,13 @@ export default function GuessWord({ checkGuess }) {
   const isGuessValid = () => {
     return inputPattern.test(guess);
   };
+
+  useEffect(() => {
+    if (isGameOver === false) {
+      setGuess("");
+      setErrorMessage("");
+    }
+  }, [isGameOver]);
 
   return (
     <StyledGuessWord onSubmit={handleSubmit}>
