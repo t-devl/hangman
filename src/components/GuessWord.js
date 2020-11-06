@@ -22,6 +22,11 @@ const SubmitButton = styled.button`
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    background-color: #f7ca28;
+  }
 `;
 
 const ErrorMessage = styled.span`
