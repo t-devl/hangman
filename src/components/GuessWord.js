@@ -65,6 +65,7 @@ export default function GuessWord({ checkGuess, isGameOver }) {
         placeholder="Have a guess..."
         value={guess}
         onChange={(e) => setGuess(e.target.value)}
+        disabled={isGameOver}
       ></GuessInput>
       <SubmitButton>Submit</SubmitButton>
       {errorMessage !== "" ? <ErrorMessage>{errorMessage}</ErrorMessage> : ""}
