@@ -20,8 +20,22 @@ const StyledKey = styled.button`
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
+  &:hover,
+  &:focus {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    transform: translateY(1px);
+  }
+
+  &:active {
+    outline: none;
+    box-shadow: none;
+    transform: translateY(2px);
+  }
+
   &:disabled {
     background-color: #f2f2f2;
+    box-shadow: none;
+    transform: translateY(2px);
   }
 
   &:disabled::after {
