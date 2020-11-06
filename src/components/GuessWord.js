@@ -35,14 +35,20 @@ const ErrorMessage = styled.span`
 export default function GuessWord({ checkGuess, isGameOver }) {
   const [guess, setGuess] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [previousGuesses, setPreviousGuesses] = useState([]);
   const inputPattern = new RegExp("^[a-zA-Z]+$");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isGuessValid()) {
-      checkGuess(guess.toUpperCase());
-      setGuess("");
-      setErrorMessage("");
+      if (isGuessNew()) {
+        checkGuess(guess.toUpperCase());
+        setPreviousGuesses([...previousGuesses, guess.toUpperCase()]);
+        setGuess("");
+        setErrorMessage("");
+      } else {
+        setErrorMessage("You have already guessed this word.");
+      }
     } else {
       setErrorMessage("Your guess must be made up of letters.");
     }
@@ -50,6 +56,10 @@ export default function GuessWord({ checkGuess, isGameOver }) {
 
   const isGuessValid = () => {
     return inputPattern.test(guess);
+  };
+
+  const isGuessNew = () => {
+    return !previousGuesses.includes(guess.toUpperCase());
   };
 
   useEffect(() => {
