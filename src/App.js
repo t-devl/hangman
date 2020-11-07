@@ -134,6 +134,7 @@ function App() {
           startNewGame={startNewGame}
           gameOutcome={gameOutcome}
           gameOverMessage={gameOverMessage}
+          chosenWord={chosenWord}
         ></GameOver>
       ) : (
         ""

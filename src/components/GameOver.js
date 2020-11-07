@@ -13,10 +13,16 @@ const StyledGameOver = styled.div`
 `;
 
 const Message = styled.h1`
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   color: ${(props) => (props.gameOutcome === "win" ? "#3dc229" : "#fa2720")};
   font-size: 3rem;
+  line-height: 1;
   text-transform: uppercase;
+`;
+
+const RevealWord = styled.p`
+  margin-bottom: 0.7rem;
+  color: white;
 `;
 
 const PlayAgainButton = styled.button`
@@ -55,10 +61,12 @@ export default function GameOver({
   startNewGame,
   gameOverMessage,
   gameOutcome,
+  chosenWord,
 }) {
   return (
     <StyledGameOver>
       <Message gameOutcome={gameOutcome}>{gameOverMessage}</Message>
+      <RevealWord>The word was {chosenWord}.</RevealWord>
       <PlayAgainButton onClick={startNewGame}>Play Again</PlayAgainButton>
     </StyledGameOver>
   );
