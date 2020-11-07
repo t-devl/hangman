@@ -16,10 +16,7 @@ const Title = styled.h1`
 `;
 
 function App() {
-  let indexOfChosenWord;
-  let correctlyGuessedLetters;
-
-  let randomWords = [
+  const [randomWords, setRandomWords] = useState([
     "population",
     "jazz",
     "weather",
@@ -31,20 +28,23 @@ function App() {
     "restaurant",
     "reunion",
     "secret",
-  ];
+  ]);
   const [isWelcomeScreenVisible, setIsWelcomeScreenVisible] = useState(true);
-  const [chosenWord, setChosenWord] = useState("TEST");
+  const [chosenWord, setChosenWord] = useState("");
   const [currentResult, setCurrentResult] = useState([]);
   const [livesLeft, setLivesLeft] = useState(11);
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameOutcome, setGameOutcome] = useState("");
   const [gameOverMessage, setGameOverMessage] = useState("");
+  let indexOfChosenWord = Math.floor(Math.random() * randomWords.length);
+  let correctlyGuessedLetters;
 
   const startNewGame = () => {
     indexOfChosenWord = Math.floor(Math.random() * randomWords.length);
     setChosenWord(randomWords[indexOfChosenWord].toUpperCase());
     setLivesLeft(11);
     setIsGameOver(false);
+    updateRandomWords();
   };
 
   useEffect(() => {
@@ -53,8 +53,13 @@ function App() {
       correctlyGuessedLetters.push("");
     }
     setCurrentResult(correctlyGuessedLetters);
-    randomWords.splice(indexOfChosenWord);
   }, [chosenWord]);
+
+  const updateRandomWords = () => {
+    let updatedRandomWords = [...randomWords];
+    updatedRandomWords.splice(indexOfChosenWord, 1);
+    setRandomWords([...updatedRandomWords]);
+  };
 
   const checkIfKeyMatches = (key) => {
     let matchesFound = 0;
