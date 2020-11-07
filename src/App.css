@@ -6,6 +6,11 @@
   margin: 0;
 }
 
+body {
+  position: relative;
+  min-width: 280px;
+}
+
 input,
 button {
   font-family: "Roboto", sans-serif;
@@ -22,4 +27,16 @@ button {
   min-width: 100vw;
   min-height: 100vh;
   font-family: "Roboto", sans-serif;
+}
+
+@media (min-width: 750px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-height: 1000px) {
+  html {
+    font-size: 26px;
+  }
 }

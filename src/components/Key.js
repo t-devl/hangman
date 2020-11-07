@@ -6,12 +6,12 @@ const StyledKey = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 25px;
-  min-height: 25px;
+  min-width: 22px;
+  min-height: 22px;
   width: 7vw;
   height: 7vw;
-  max-width: 30px;
-  max-height: 30px;
+  max-width: 1.9rem;
+  max-height: 1.9rem;
   margin: 1vw;
   border: none;
   border-radius: 3px;

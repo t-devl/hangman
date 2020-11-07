@@ -7,8 +7,10 @@ const StyledWord = styled.div`
 `;
 
 const Letter = styled.div`
-  width: 21px;
-  height: 25px;
+  min-width: 20px;
+  width: 7vw;
+  max-width: 1.4rem;
+  height: 1.6rem;
   margin: 0 4px;
   border-bottom: 2px solid black;
   font-size: 1.2rem;
