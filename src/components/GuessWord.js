@@ -71,6 +71,7 @@ export default function GuessWord({ checkGuess, isGameOver }) {
     if (isGameOver === false) {
       setGuess("");
       setErrorMessage("");
+      setPreviousGuesses([]);
     }
   }, [isGameOver]);
 
