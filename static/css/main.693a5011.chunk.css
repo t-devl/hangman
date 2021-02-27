@@ -1,0 +1,2 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap);*{box-sizing:border-box;padding:0;margin:0}body{position:relative;min-width:280px}button,input{font-family:"Roboto",sans-serif}button{cursor:pointer}.App{display:flex;flex-direction:column;align-items:center;min-width:100vw;min-height:100vh;font-family:"Roboto",sans-serif}@media (min-width:750px){html{font-size:18px}}@media (min-height:1000px){html{font-size:26px}}
+/*# sourceMappingURL=main.693a5011.chunk.css.map */
