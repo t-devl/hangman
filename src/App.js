@@ -16,7 +16,7 @@ const Title = styled.h1`
 `;
 
 function App() {
-  const [randomWords, setRandomWords] = useState([
+  const randomWords = [
     "population",
     "jazz",
     "weather",
@@ -28,6 +28,27 @@ function App() {
     "restaurant",
     "reunion",
     "secret",
+    "lion",
+    "pineapple",
+    "music",
+    "lightning",
+  ];
+  const [remainingWords, setRemainingWords] = useState([
+    "population",
+    "jazz",
+    "weather",
+    "park",
+    "rainfall",
+    "television",
+    "shoelace",
+    "printer",
+    "restaurant",
+    "reunion",
+    "secret",
+    "lion",
+    "pineapple",
+    "music",
+    "lightning",
   ]);
   const [isWelcomeScreenVisible, setIsWelcomeScreenVisible] = useState(true);
   const [chosenWord, setChosenWord] = useState("");
@@ -36,12 +57,12 @@ function App() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameOutcome, setGameOutcome] = useState("");
   const [gameOverMessage, setGameOverMessage] = useState("");
-  let indexOfChosenWord = Math.floor(Math.random() * randomWords.length);
+  let indexOfChosenWord = Math.floor(Math.random() * remainingWords.length);
   let correctlyGuessedLetters;
 
   const startNewGame = () => {
-    indexOfChosenWord = Math.floor(Math.random() * randomWords.length);
-    setChosenWord(randomWords[indexOfChosenWord].toUpperCase());
+    indexOfChosenWord = Math.floor(Math.random() * remainingWords.length);
+    setChosenWord(remainingWords[indexOfChosenWord].toUpperCase());
     setLivesLeft(11);
     setIsGameOver(false);
     updateRandomWords();
@@ -56,9 +77,13 @@ function App() {
   }, [chosenWord]);
 
   const updateRandomWords = () => {
-    let updatedRandomWords = [...randomWords];
+    let updatedRandomWords = [...remainingWords];
     updatedRandomWords.splice(indexOfChosenWord, 1);
-    setRandomWords([...updatedRandomWords]);
+    if (remainingWords.length === 1) {
+      setRemainingWords([...randomWords]);
+    } else {
+      setRemainingWords([...updatedRandomWords]);
+    }
   };
 
   const checkIfKeyMatches = (key) => {
